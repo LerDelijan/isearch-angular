@@ -1,0 +1,21 @@
+<div class="container">
+  <div>
+    <input type="text" 
+      id="my-text-field" 
+      #searchBox (keyup)="search(searchBox.value)" 
+      class="mdc-text-field__input" 
+      placeholder="Search"
+    />
+  </div>
+
+  <div>
+    <ul class="mdc-list">
+      <li *ngFor="let item of (items$ | async)?.results" class="mdc-list-item">
+        <img src={{item.artworkUrl30}} alt="" class="img" />
+          <a href={{item.trackViewUrl}} target="_blank">
+            <p>{{item.trackName}} - {{item.artistName}}
+          </a>
+      </li>
+    </ul>
+  </div>
+</div>
