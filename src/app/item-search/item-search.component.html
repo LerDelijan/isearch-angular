@@ -1,21 +1,13 @@
 <div class="container">
-  <div>
-    <input type="text" 
-      id="my-text-field" 
-      #searchBox (keyup)="search(searchBox.value)" 
-      class="mdc-text-field__input" 
-      placeholder="Search"
-    />
+  <div class="md-form">
+    <input type="text" #searchBox (keyup)="search(searchBox.value)" class="form-control">
+    <label for="searchBox">Search</label>
   </div>
 
-  <div>
-    <ul class="mdc-list">
-      <li *ngFor="let item of (items$ | async)?.results" class="mdc-list-item">
-        <img src={{item.artworkUrl30}} alt="" class="img" />
-          <a href={{item.trackViewUrl}} target="_blank">
-            <p>{{item.trackName}} - {{item.artistName}}
-          </a>
-      </li>
-    </ul>
+  <div *ngFor="let item of (items$ | async)?.results" class="list-group z-depth-1">
+    <a href={{item.trackViewUrl}} target="_blank" class="list-group-item">
+      <img src={{item.artworkUrl30}} alt="" class="img-fluid z-depth-1" />
+      <span class="font-weight-bold pl-1"> {{item.artistName}}</span> - {{item.trackName}}
+    </a>
   </div>
 </div>
