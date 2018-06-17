@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Observable, Subject } from 'rxjs';
+import {Router} from "@angular/router";
 
 import {
    debounceTime, distinctUntilChanged, switchMap
@@ -20,10 +20,17 @@ export class ItemSearchComponent implements OnInit {
   items$: Observable<Item[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private itemService: ItemService) {}
+  constructor(
+    private itemService: ItemService,
+    private router: Router  
+  ) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  goDetail(id: number) {
+    this.router.navigate(['detail', `${id}`])
   }
 
   ngOnInit(): void {
@@ -33,5 +40,4 @@ export class ItemSearchComponent implements OnInit {
       switchMap((term: string) => this.itemService.searchItems(term)),
     );
   }
-
 }

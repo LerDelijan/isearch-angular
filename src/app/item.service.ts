@@ -12,16 +12,21 @@ export class ItemService {
     private http: HttpClient
   ) { }
 
-  private itemsUrl = 'https://itunes.apple.com/search';
+  private itemsUrl = 'https://itunes.apple.com/';
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
-  }
+  // private handleError<T>(operation = 'operation', result?: T) {
+  //   return (error: any): Observable<T> => {
+  //     console.error(error);
+  //     return of(result as T);
+  //   };
+  // }
 
   searchItems(term: string): Observable<Item[]> {
-    return this.http.get<Item[]>(`${this.itemsUrl}?term=${term}&media=music&limit=12`)
+    return this.http.get<Item[]>(`${this.itemsUrl}search?term=${term}&media=music&limit=12`)
+  }
+
+  getItem(id: number): Observable<Item[]> {
+    const url = `${this.itemsUrl}/lookup?id=${id}`;
+    return this.http.get<Item[]>(url);
   }
 }

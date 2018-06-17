@@ -4,8 +4,8 @@
     <label for="searchBox">Search</label>
   </div>
 
-  <div *ngFor="let item of (items$ | async)?.results" class="list-group z-depth-1">
-    <a href={{item.trackViewUrl}} target="_blank" class="list-group-item">
+  <div *ngFor="let item of (items$ | async)?.results" class="list-group">
+    <a routerLink="/detail/{{item.trackId}}" (click)="goDetail(item.trackId)" class="list-group-item animated fadeInUp z-depth-1">
       <img src={{item.artworkUrl30}} alt="" class="img-fluid z-depth-1" />
       <span class="font-weight-bold pl-1"> {{item.artistName}}</span> - {{item.trackName}}
     </a>

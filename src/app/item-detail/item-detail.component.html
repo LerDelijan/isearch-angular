@@ -1,0 +1,37 @@
+<div class="container">
+  <div *ngFor="let item of items?.results">
+    <div class="py-3 animated fadeInDown">
+      <button (click)="goBack()" type="button" class="btn btn-outline-primary waves-effect">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        <span class="font-weight-bold"> Back</span>
+      </button>
+    </div>
+
+    <div class="h">
+      <img src={{item.artworkUrl100}} alt="" class="float-left z-depth-1 img m-1 animated fadeInUp" />
+      <div class="float-right align-top animated fadeInDown">
+        <span class="font-weight-bold px-3 h5">{{item.trackPrice}} {{item.currency}}</span>
+      </div>
+      <div class="animated fadeInDown">
+        <span class="font-weight-bold m-3 text-justify align-top h2">{{item.trackName}}</span>
+      </div>
+      <div class="animated fadeInUp">
+        <a href={{item.artistViewUrl}}>
+          <span class="font-weight-normal m-3 text-justify align-top h5">{{item.artistName}}</span>
+        </a>
+      </div>
+      <div class="animated fadeInUp">
+        <span class="font-weight-normal m-3 text-right h6">
+          <a href={{item.collectionViewUrl}}>
+            {{item.collectionName}}
+          </a>
+          (Album)</span>
+      </div>
+      <div class="animated fadeInUp">
+        <span class="font-weight-normal m-3 text-justify align-top h7 text-muted">
+          {{item.primaryGenreName}} • {{item.releaseDate | date}}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
